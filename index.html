@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#1e3a5f" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="XII RPL 2" />
-    <meta name="description" content="Jadwal Pelajaran XII RPL 2" />
-    <title>XII RPL 2 — Jadwal</title>
+    <meta name="apple-mobile-web-app-title" content="XII RPL 1" />
+    <meta name="description" content="Jadwal Pelajaran XII RPL 1" />
+    <title>XII RPL 1 — Jadwal</title>
     <link rel="manifest" href="manifest.json" />
     <link rel="apple-touch-icon" href="icons/icon-180.png" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -126,17 +126,22 @@
             }
         }
         .splash-logo {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 24px;
-            background: rgba(255, 255, 255, 0.15);
+            background: #ffffff;
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             animation: logoFloat 2s ease-in-out infinite;
-            font-size: 3rem;
+            padding: 14px;
+        }
+        .splash-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         @keyframes logoFloat {
             0%,
@@ -947,9 +952,9 @@
     <!-- ===== SPLASH SCREEN ===== -->
     <div class="splash-screen" id="splashScreen">
         <div class="splash-content">
-            <div class="splash-logo">📚</div>
-            <div class="splash-title">XII RPL 2</div>
-            <div class="splash-subtitle">Jadwal Pelajaran</div>
+            <div class="splash-logo"><img src="icons/icon-192.png" alt="Logo"></div>
+            <div class="splash-title">XII RPL 1</div>
+            <div class="splash-subtitle">Power by Vathana</div>
             <div class="splash-loader"></div>
         </div>
     </div>
@@ -967,8 +972,8 @@
         <header>
             <div class="header-inner">
                 <div class="logo">
-                    XII RPL 2
-                    <span>Jadwal Sekolah</span>
+                    XII RPL 1
+                    <span>Power by Vathana</span>
                 </div>
                 <div class="header-right">
                     <span class="today-badge" id="todayBadge">Hari ini</span>
@@ -1056,7 +1061,7 @@
 
     <script>
         // ============================================================
-        //  DATA JADWAL XII RPL 2 — LENGKAP & BENAR
+        //  DATA JADWAL XII RPL 1 — LENGKAP & BENAR
         // ============================================================
         const DAYS_DATA = [{
             name: 'Senin',
@@ -1137,6 +1142,10 @@
         let activeDay = 0;
         let deferredPrompt = null;
         let notifTimer = null;
+        // Cache biar pill/badge nggak nulis ulang DOM kalau isinya sama (anti kedip)
+        let lastPillHTML = null;
+        let lastDateStr = null;
+        let lastBadgeText = null;
 
         // ============================================================
         //  PWA INSTALL HELPERS
@@ -1152,10 +1161,6 @@
                 (ua.includes('Macintosh') && 'ontouchend' in document);
             return isIOS;
         }
-        // Cache biar pill/badge nggak nulis ulang DOM kalau isinya sama (anti kedip)
-        let lastPillHTML = null;
-        let lastDateStr = null;
-        let lastBadgeText = null;
 
         // ============================================================
         //  HELPERS
@@ -1381,10 +1386,10 @@
             if (items.length > 0 && Notification.permission === 'granted') {
                 const names = items.map(i => i.subject).join(', ');
                 navigator.serviceWorker.ready.then(reg => {
-                    reg.showNotification(`📚 ${day.name} — XII RPL 2`, {
+                    reg.showNotification(`📚 ${day.name} — XII RPL 1`, {
                         body: `${items.length} mata pelajaran: ${names}`,
-                        icon: '/icons/icon-192.png',
-                        badge: '/icons/icon-72.png',
+                        icon: 'icons/icon-192.png',
+                        badge: 'icons/icon-72.png',
                         vibrate: [200, 100, 200],
                     });
                 });
@@ -1608,7 +1613,7 @@
 
             setTimeout(checkTodaySchedule, 3000);
 
-            console.log('📚 XII RPL 2 — Jadwal siap!');
+            console.log('📚 XII RPL 1 — Jadwal siap!');
         }
 
         if ('serviceWorker' in navigator) {
