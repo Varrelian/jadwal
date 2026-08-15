@@ -1,7 +1,7 @@
 {
-  "name": "XII RPL 2 — Jadwal Pelajaran",
-  "short_name": "XII RPL 2",
-  "description": "Jadwal pelajaran kelas XII RPL 2",
+  "name": "XII RPL 1 — Jadwal Pelajaran",
+  "short_name": "XII RPL 1",
+  "description": "Jadwal pelajaran kelas XII RPL 1",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

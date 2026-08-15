@@ -1,4 +1,4 @@
-const CACHE_NAME = 'xii-rpl2-jadwal-v1';
+const CACHE_NAME = 'xii-rpl1-jadwal-v1';
 const PRECACHE_URLS = [
   './',
   './index.html',
